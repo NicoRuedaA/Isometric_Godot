@@ -18,7 +18,6 @@ Este es un proyecto 2D isométrico desarrollado en **Godot Engine 3.x**.
 
 El proyecto cuenta con las siguientes acciones mapeadas:
 
-- **Movimiento:** `W` (Arriba), `A` (Izquierda), `S` (Abajo), `D` (Derecha)
 - **Seleccionar:** Click Izquierdo
 - **Zoom:** Rueda del ratón (`zoom_in`, `zoom_out`)
 - **Pausa:** `Escape`
