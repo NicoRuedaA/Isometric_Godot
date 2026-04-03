@@ -38,12 +38,14 @@ func _ready():
 	
 	for i in player2.get_children():
 		xCell+=1
+		i.setup(self, game_manager)
 		i.set_to_cell(xCell, yCell)
 		i.connect("on_death", game_manager, "_on_actor_death")
 	xCell = -4
 	yCell = 4
 	for i in player1.get_children():
 		xCell+=1
+		i.setup(self, game_manager)
 		i.set_to_cell(xCell, yCell)
 		i.connect("on_death", game_manager, "_on_actor_death")
 

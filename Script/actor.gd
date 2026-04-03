@@ -2,9 +2,10 @@ extends "res://Script/pawn.gd"
 
 #3 jugador 1, 4 jugador 2, 2 clickeado
 
-onready var cellSize
-onready var Grid = get_parent().get_parent()
-onready var gameManager = get_parent().get_parent().get_parent()
+var Grid
+var gameManager
+
+var cellSize = Vector2.ZERO
 onready var habilities_tree = $habilities
 
 export var m_move_range = 2
@@ -19,13 +20,15 @@ var m_is_clicked
 var m_attacking
 var m_actual_attack
 
-
+func setup(grid_ref, gm_ref):
+	Grid = grid_ref
+	gameManager = gm_ref
+	if Grid:
+		cellSize = Grid.set_size()
 
 signal on_death(actor)
 
 func _ready():
-	
-	cellSize = Grid.set_size()
 	m_is_clicked = false
 	m_attacking = false
 	
