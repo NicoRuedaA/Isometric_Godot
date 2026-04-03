@@ -104,6 +104,8 @@ func request_move(pawn, direction):
 					set_cellv(cell_target, pawn.m_cell_player)
 					pawn.m_is_clicked = false
 					yield(get_tree().create_timer(0.1), "timeout")
+					if not is_instance_valid(pawn):
+						return
 					game_manager.request_end_turn(true)
 					draw_range(pawn.m_move_range, cell_start, EMPTY)
 				elif(cell_start!=cell_target):
@@ -111,6 +113,8 @@ func request_move(pawn, direction):
 					pawn.m_is_clicked = false
 					set_cellv(cell_start, pawn.m_cell_player)
 					yield(get_tree().create_timer(0.1), "timeout")
+					if not is_instance_valid(pawn):
+						return
 					game_manager.request_end_turn(false)
 					draw_range(pawn.m_move_range, cell_start, EMPTY)
 					
@@ -133,6 +137,8 @@ func request_attack(pawn, hability , direction):
 				draw_range(hability.hability_range, cell_start, EMPTY)
 				#draw_range(pawn.m_move_range, cell_start, MOVEMENT)
 				yield(get_tree().create_timer(0.5), "timeout")
+				if not is_instance_valid(pawn):
+					return
 				pawn.m_attacking=false
 				yield(get_tree().create_timer(0.1), "timeout")
 				game_manager.request_end_turn(false)
@@ -145,18 +151,26 @@ func request_attack(pawn, hability , direction):
 					pawn.m_attacking=false
 					pawn.m_is_clicked = false
 					yield(get_tree().create_timer(0.35), "timeout")
+					if not is_instance_valid(pawn):
+						return
 					game_manager.request_end_turn(true)
 					
 					var pawn_target = game_manager.get_pawn_clicked()
 					pawn_target.get_damage(pawn.m_actual_attack)
 					yield(get_tree().create_timer(0.3), "timeout")
-					set_cellv(world_to_map(pawn_target.position), -1)
+					if not is_instance_valid(pawn_target):
+						# Si el objetivo murió antes, limpiamos la celda usando la celda calculada anterior
+						set_cellv(world_to_map(cell_target), -1)
+					else:
+						set_cellv(world_to_map(pawn_target.position), -1)
 					
 					draw_range(pawn.m_move_range, cell_start, EMPTY)
 					draw_range(hability.hability_range, cell_start, EMPTY)
 					
 					
 					yield(get_tree().create_timer(0.35), "timeout")
+					if not is_instance_valid(pawn):
+						return
 					game_manager.set_cell_clicked(worldToMap(cell_target))
 				pawn.m_attacking=false
 		
