@@ -49,17 +49,7 @@ func _ready():
 	
 	
 	
-func _unhandled_input(event):
-
-	if event is InputEventMouseButton:
-		if Input.is_action_pressed("left_click"):
-			if(m_is_clicked and not m_attacking):
-				var toMove =  get_global_mouse_position()
-				Grid.request_move(self, toMove)
-			if(m_is_clicked and m_attacking):
-				
-				var toAttack = get_global_mouse_position()
-				Grid.request_attack(self, m_actual_attack, toAttack)
+# Función _unhandled_input eliminada para centralizar los inputs en gameController.gd
 		
 		
 func attack():

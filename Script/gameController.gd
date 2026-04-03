@@ -27,11 +27,18 @@ func _ready():
 	
 #Click
 func _unhandled_input(event):
-	if(!self.thinking):
+	if event is InputEventMouseButton:
 		if Input.is_action_pressed("left_click"):
 			var cell_Position =  get_global_mouse_position()
-			var x = grid.get_cell_clicked(cell_Position)
-			area_cell_clicked.global_position = x
+			if(!self.thinking):
+				var x = grid.get_cell_clicked(cell_Position)
+				area_cell_clicked.global_position = x
+			else:
+				if pawn_clicked != null:
+					if(pawn_clicked.m_is_clicked and not pawn_clicked.m_attacking):
+						grid.request_move(pawn_clicked, cell_Position)
+					elif(pawn_clicked.m_is_clicked and pawn_clicked.m_attacking):
+						grid.request_attack(pawn_clicked, pawn_clicked.m_actual_attack, cell_Position)
 
 
 #Obtenemos jugador clickado
