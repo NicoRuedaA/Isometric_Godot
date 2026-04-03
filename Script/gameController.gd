@@ -73,6 +73,16 @@ func _on_Attack_pressed():
 	#if(pawn_clicked != null):
 		#pawn_clicked.attack()
 		
+func _on_actor_death(actor):
+	if(actor.name == "jefe"):
+		if actor.get_parent().name == str(2):
+			GlobalSettings.winner = "player 1" 
+			GlobalSettings.loser = "player 2" 
+		else:
+			GlobalSettings.winner = "player 2" 
+			GlobalSettings.loser = "player 1" 
+		get_tree().change_scene("res://Escena/Olaia/result.tscn")
+
 func go_to_menu():
 	get_tree().change_scene("res://Escena/Olaia/HUD_PRINCIPAL.tscn")
 	get_tree().paused = false

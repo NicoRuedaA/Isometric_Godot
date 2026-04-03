@@ -21,6 +21,8 @@ var m_actual_attack
 
 
 
+signal on_death(actor)
+
 func _ready():
 	
 	cellSize = Grid.set_size()
@@ -74,17 +76,12 @@ func get_damage(hab):
 func kill():
 	$Sprite.modulate = Color( 1, 1, 1, 0.5 )
 	yield(get_tree().create_timer(0.35), "timeout")
-	$Sprite.modulate = Color( 1, 1, 1, 0)
+	if is_instance_valid(self):
+		$Sprite.modulate = Color( 1, 1, 1, 0)
 	yield(get_tree().create_timer(0.4), "timeout")
-	if(self.name == "jefe"):
-		if get_parent().name == str(2):
-			GlobalSettings.winner = "player 1" 
-			GlobalSettings.loser = "player 2" 
-		else:
-			GlobalSettings.winner = "player 2" 
-			GlobalSettings.loser = "player 1" 
-		get_tree().change_scene("res://Escena/Olaia/result.tscn")
-	self.queue_free()
+	if is_instance_valid(self):
+		emit_signal("on_death", self)
+		self.queue_free()
 
 func flip_sprite(orien):
 	$Sprite.set_flip_h(!orien)
