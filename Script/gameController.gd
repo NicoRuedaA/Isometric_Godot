@@ -21,7 +21,6 @@ func _ready():
 	
 #Click
 func _input(event):
-	get_pawn_clicked()
 	if(!thinking):
 		if Input.is_action_pressed("left_click"):
 			var cell_Position =  get_global_mouse_position()
