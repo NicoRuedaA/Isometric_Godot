@@ -21,10 +21,8 @@ func _on_thinking_changed(is_thinking):
 func _update_ui(is_thinking):
 	if(is_thinking):
 		me.show()
-		button_attack.set_disabled(false)
 	else:
 		me.hide()
-		button_attack.set_disabled(true)
 		
 	
 func show_me():
