@@ -73,7 +73,17 @@ func prepare_attack(pawn, hability):
 	pawn.m_is_clicked=true
 
 
-#cuando se han pintado las filas donde nos podemos mover
+func get_pawn_at_cell(cell: Vector2):
+	if player1:
+		for i in player1.get_children():
+			if i.m_actual_cell == cell:
+				return i
+	if player2:
+		for i in player2.get_children():
+			if i.m_actual_cell == cell:
+				return i
+	return null
+
 func request_move(pawn, direction):
 	if not(pawn.m_attacking):
 		#print("lllama a la funcion moueve ese culardo")
@@ -155,8 +165,9 @@ func request_attack(pawn, hability , direction):
 						return
 					game_manager.request_end_turn(true)
 					
-					var pawn_target = game_manager.get_pawn_clicked()
-					pawn_target.get_damage(pawn.m_actual_attack)
+					var pawn_target = get_pawn_at_cell(cell_target)
+					if pawn_target:
+						pawn_target.get_damage(pawn.m_actual_attack)
 					yield(get_tree().create_timer(0.3), "timeout")
 					if not is_instance_valid(pawn_target):
 						# Si el objetivo murió antes, limpiamos la celda usando la celda calculada anterior
