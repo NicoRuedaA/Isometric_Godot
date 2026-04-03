@@ -41,9 +41,9 @@ func _ready():
 	m_attacking = false
 	
 	if(!is_boss):
-		m_cell_player = 3 if team == 1 else 4
+		m_cell_player = Grid.P1_NORMAL if team == 1 else Grid.P2_NORMAL
 	else:
-		m_cell_player = 15 if team == 1 else 14
+		m_cell_player = Grid.P1_BOSS if team == 1 else Grid.P2_BOSS
 	m_actual_attack=habilities_tree.m_habilities[0]
 	
 	
@@ -73,9 +73,9 @@ func clicked():
 	m_is_clicked = true
 	Grid.prepare_movement(self)
 	if(!is_boss):
-		Grid.print_cell(m_actual_cell, 2)
+		Grid.print_cell(m_actual_cell, Grid.CLICKED_NORMAL)
 	else:
-		Grid.print_cell(m_actual_cell, 16)
+		Grid.print_cell(m_actual_cell, Grid.CLICKED_BOSS)
 	
 
 func get_damage(hab):

@@ -65,11 +65,11 @@ func isometricToCartesian(iso):
 
 
 func prepare_movement(pawn):
-	draw_range(pawn.m_move_range , world_to_map(pawn.position), 0)
+	draw_range(pawn.m_move_range , world_to_map(pawn.position), MOVEMENT)
 	
 func prepare_attack(pawn, hability):
 	draw_range(pawn.m_move_range, world_to_map(pawn.position), EMPTY)
-	draw_range(hability.hability_range, world_to_map(pawn.position), 1)
+	draw_range(hability.hability_range, world_to_map(pawn.position), ATTACK)
 	pawn.m_is_clicked=true
 
 
@@ -227,7 +227,7 @@ func draw_range(move_range, actual_cell, tile):
 			cell_target = Vector2(actual_cell.x - x, actual_cell.y + y)
 			cell_target_type = tablero.get_cellv(cell_target)
 			#cell_target_type != -1 and 
-			if(cell_target_type==0 or cell_target_type==1):
+			if(cell_target_type==MOVEMENT or cell_target_type==ATTACK):
 				ranges.print_cell(cell_target, tile)
 			
 			y-=1
