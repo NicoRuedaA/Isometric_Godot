@@ -4,7 +4,12 @@ onready var ranges = $rangos
 onready var game_manager = get_parent()
 onready var tablero = get_parent().get_node("tablero")
 
-var sets = [preload("res://Escena/equipos/equipoMuerte.tscn"), preload("res://Escena/equipos/equipoMonkey.tscn"), preload("res://Escena/equipos/equipoVerde.tscn"), preload("res://Escena/equipos/equipoOriginal.tscn")]
+export(Array, PackedScene) var sets = [
+	preload("res://Escena/equipos/equipoMuerte.tscn"),
+	preload("res://Escena/equipos/equipoMonkey.tscn"),
+	preload("res://Escena/equipos/equipoVerde.tscn"),
+	preload("res://Escena/equipos/equipoOriginal.tscn")
+]
 
 var set_player1 = sets[int(GlobalSettings.set_player_1)]
 var set_player2 = sets[int(GlobalSettings.set_player_2)]
