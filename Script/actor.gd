@@ -25,6 +25,10 @@ func setup(grid_ref, gm_ref):
 	gameManager = gm_ref
 	if Grid:
 		cellSize = Grid.set_size()
+		if(!is_boss):
+			m_cell_player = Grid.P1_NORMAL if team == 1 else Grid.P2_NORMAL
+		else:
+			m_cell_player = Grid.P1_BOSS if team == 1 else Grid.P2_BOSS
 
 signal on_death(actor)
 
@@ -40,10 +44,6 @@ func _ready():
 	m_is_clicked = false
 	m_attacking = false
 	
-	if(!is_boss):
-		m_cell_player = Grid.P1_NORMAL if team == 1 else Grid.P2_NORMAL
-	else:
-		m_cell_player = Grid.P1_BOSS if team == 1 else Grid.P2_BOSS
 	m_actual_attack=habilities_tree.m_habilities[0]
 	
 	
