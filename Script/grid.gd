@@ -68,7 +68,7 @@ func prepare_movement(pawn):
 	draw_range(pawn.m_move_range , world_to_map(pawn.position), 0)
 	
 func prepare_attack(pawn, hability):
-	
+	draw_range(pawn.m_move_range, world_to_map(pawn.position), EMPTY)
 	draw_range(hability.hability_range, world_to_map(pawn.position), 1)
 	pawn.m_is_clicked=true
 
