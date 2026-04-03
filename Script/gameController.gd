@@ -10,18 +10,24 @@ onready var area_cell_clicked = $clicked
 #pieza seleccionada
 var pawn_clicked 
 #gestion de turnos
-var thinking
+var thinking setget set_thinking
 var active_player : int = 1
+
+signal thinking_changed(is_thinking)
+
+func set_thinking(value):
+	thinking = value
+	emit_signal("thinking_changed", thinking)
 
 
 
 
 func _ready():
-	thinking = false
+	self.thinking = false
 	
 #Click
 func _input(event):
-	if(!thinking):
+	if(!self.thinking):
 		if Input.is_action_pressed("left_click"):
 			var cell_Position =  get_global_mouse_position()
 			var x = grid.get_cell_clicked(cell_Position)
@@ -35,7 +41,7 @@ func _on_clicked_area_entered(area):
 	pawn_clicked.m_is_clicked == false and 
 	int(pawn_clicked.get_parent().name) == active_player):
 		pawn_clicked.clicked()
-		thinking=true
+		self.thinking=true
 		
 		
 #cuando atacamos, no cambiamos la celda seleccionada (logica de juego)
@@ -50,7 +56,7 @@ func get_pawn_clicked():
 #						****GESTION DE TURNOS****
 func request_end_turn(turn_ended):
 
-	thinking=false
+	self.thinking=false
 	if(turn_ended):
 		end_turn()
 		
