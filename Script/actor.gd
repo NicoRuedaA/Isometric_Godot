@@ -28,14 +28,22 @@ func setup(grid_ref, gm_ref):
 
 signal on_death(actor)
 
+export var is_boss : bool = false
+export var team : int = 0
+
 func _ready():
+	if team == 0 and get_parent():
+		team = int(get_parent().name) if get_parent().name in ["1", "2"] else 1
+	if not is_boss and name == "jefe":
+		is_boss = true
+		
 	m_is_clicked = false
 	m_attacking = false
 	
-	if(self.name!="jefe"):
-		m_cell_player = 3 if get_parent().name==str(1) else 4
+	if(!is_boss):
+		m_cell_player = 3 if team == 1 else 4
 	else:
-		m_cell_player = 15 if get_parent().name==str(1) else 14
+		m_cell_player = 15 if team == 1 else 14
 	m_actual_attack=habilities_tree.m_habilities[0]
 	
 	
@@ -64,7 +72,7 @@ func attack():
 func clicked():
 	m_is_clicked = true
 	Grid.prepare_movement(self)
-	if(self.name!="jefe"):
+	if(!is_boss):
 		Grid.print_cell(m_actual_cell, 2)
 	else:
 		Grid.print_cell(m_actual_cell, 16)

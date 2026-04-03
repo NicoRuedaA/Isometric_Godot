@@ -74,8 +74,8 @@ func _on_Attack_pressed():
 		#pawn_clicked.attack()
 		
 func _on_actor_death(actor):
-	if(actor.name == "jefe"):
-		if actor.get_parent().name == str(2):
+	if(actor.is_boss):
+		if actor.team == 2:
 			GlobalSettings.winner = "player 1" 
 			GlobalSettings.loser = "player 2" 
 		else:
