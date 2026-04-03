@@ -1,4 +1,6 @@
-# Grupo - Isometric Godot Project
+# Isometric Godot Project
+
+![](https://github.com/NicoRuedaA/Isometric_Godot/blob/main/preview.gif?raw=true)
 
 Este es un proyecto 2D isométrico desarrollado en **Godot Engine 3.x**. 
 
