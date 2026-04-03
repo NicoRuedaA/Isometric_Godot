@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/main_menu_music.mp3-671a1790e7b15cd921a34bd88e570e9b.mp3str"
+
+[deps]
+
+source_file="res://Sprite/assets/musica/main_menu_music.mp3"
+dest_files=[ "res://.import/main_menu_music.mp3-671a1790e7b15cd921a34bd88e570e9b.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

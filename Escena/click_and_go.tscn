@@ -1,0 +1,3 @@
+[gd_scene format=2]
+
+[node name="click_and_go" type="Node2D"]

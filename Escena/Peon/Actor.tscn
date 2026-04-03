@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Script/actor.gd" type="Script" id=1]
+[ext_resource path="res://Sprite/assets/personajes/crawler.png" type="Texture" id=2]
+[ext_resource path="res://Script/Habilities/habilities.gd" type="Script" id=3]
+[ext_resource path="res://Script/Habilities/hability.gd" type="Script" id=4]
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 20.025
+
+[node name="Actor" type="Node2D" groups=["pawn"]]
+position = Vector2( -2, 27 )
+z_index = 2
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -37 )
+texture = ExtResource( 2 )
+
+[node name="area" type="Area2D" parent="."]
+position = Vector2( 0, 15 )
+
+[node name="collider" type="CollisionShape2D" parent="area"]
+shape = SubResource( 5 )
+
+[node name="habilities" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="hability" type="Node2D" parent="habilities"]
+script = ExtResource( 4 )

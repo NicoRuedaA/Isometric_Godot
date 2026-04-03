@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/battle_music.mp3-9539e307c8a8a4aae5f1430cd8e113e9.mp3str"
+
+[deps]
+
+source_file="res://Sprite/assets/musica/battle_music.mp3"
+dest_files=[ "res://.import/battle_music.mp3-9539e307c8a8a4aae5f1430cd8e113e9.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

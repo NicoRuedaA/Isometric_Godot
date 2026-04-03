@@ -1,0 +1,232 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Escena/Olaia/result.gd" type="Script" id=1]
+[ext_resource path="res://Sprite/assets/variados/button_black.png" type="Texture" id=2]
+[ext_resource path="res://fuentes/alagard.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Sprite/assets/musica/game_over_music.mp3" type="AudioStream" id=4]
+[ext_resource path="res://Escena/AudioStreamPlayer.tscn" type="PackedScene" id=5]
+
+[sub_resource type="DynamicFont" id=11]
+size = 90
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 45
+font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id=9]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id=10]
+draw_center = false
+
+[sub_resource type="DynamicFont" id=15]
+size = 45
+font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=17]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id=18]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id=16]
+draw_center = false
+
+[sub_resource type="DynamicFont" id=6]
+size = 60
+font_data = ExtResource( 3 )
+
+[sub_resource type="Animation" id=12]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Victory:custom_fonts/font:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 90, 200 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Victory:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Victory:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "init"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Victory:custom_fonts/font:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 90 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Victory:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "show"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/path = NodePath("Victory:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Victory:custom_fonts/font:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 40, 90 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Victory:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="CanvasLayer" type="CanvasLayer"]
+follow_viewport_enable = true
+script = ExtResource( 1 )
+
+[node name="Victory" type="Label" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -202.0
+margin_top = 58.0
+margin_right = 1180.0
+margin_bottom = 628.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "Player 1 Wins !!
+
+Player 2 Lose !!"
+align = 1
+
+[node name="TextureButton2" type="TextureButton" parent="."]
+margin_left = 629.0
+margin_top = 246.0
+margin_right = 974.0
+margin_bottom = 724.0
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Settings" type="Button" parent="TextureButton2"]
+margin_left = 30.0
+margin_top = 186.0
+margin_right = 324.0
+margin_bottom = 303.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0.6, 0.2, 0.6, 1 )
+custom_colors/font_color_pressed = Color( 0.6, 0.2, 0.6, 1 )
+custom_fonts/font = SubResource( 7 )
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+text = "Go to menu"
+
+[node name="TextureButton3" type="TextureButton" parent="."]
+margin_left = 46.0
+margin_top = 255.0
+margin_right = 399.0
+margin_bottom = 715.0
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Play_Again" type="Button" parent="TextureButton3"]
+margin_left = 28.0
+margin_top = 180.0
+margin_right = 327.0
+margin_bottom = 290.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0.2, 0.2, 0.4, 1 )
+custom_colors/font_color_pressed = Color( 0.2, 0.2, 0.4, 1 )
+custom_fonts/font = SubResource( 15 )
+custom_styles/hover = SubResource( 17 )
+custom_styles/pressed = SubResource( 18 )
+custom_styles/normal = SubResource( 16 )
+text = "Play Again"
+
+[node name="Score" type="Label" parent="."]
+visible = false
+margin_left = 542.0
+margin_top = 477.0
+margin_right = 730.0
+margin_bottom = 534.0
+custom_fonts/font = SubResource( 6 )
+text = "Your Score :"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 12 )
+anims/init = SubResource( 13 )
+anims/show = SubResource( 14 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="AudioStreamPlayer" parent="." instance=ExtResource( 5 )]
+stream = ExtResource( 4 )
+
+[connection signal="pressed" from="TextureButton2/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="TextureButton3/Play_Again" to="." method="_on_Play_Again_pressed"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/character_selection.mp3-0430e146ff6e0ca90f7476e4d3067ed6.mp3str"
+
+[deps]
+
+source_file="res://Sprite/assets/musica/character_selection.mp3"
+dest_files=[ "res://.import/character_selection.mp3-0430e146ff6e0ca90f7476e4d3067ed6.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

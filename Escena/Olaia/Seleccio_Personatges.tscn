@@ -1,0 +1,173 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Sprite/assets/variados/arrow_left.png" type="Texture" id=1]
+[ext_resource path="res://Sprite/assets/variados/arrow_right.png" type="Texture" id=2]
+[ext_resource path="res://Sprite/assets/personajes/jefes i player/2boss.png" type="Texture" id=3]
+[ext_resource path="res://Sprite/assets/variados/barra.png" type="Texture" id=4]
+[ext_resource path="res://Sprite/assets/personajes/jefes i player/nigromancer.png" type="Texture" id=5]
+[ext_resource path="res://Sprite/assets/personajes/jefes i player/first_boss.png" type="Texture" id=7]
+[ext_resource path="res://Escena/Olaia/Seleccio_Personatges.gd" type="Script" id=8]
+[ext_resource path="res://fuentes/alagard.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://Sprite/IMG-20220617-WA0056.jpg" type="Texture" id=10]
+[ext_resource path="res://Sprite/light_glow.png" type="Texture" id=11]
+[ext_resource path="res://Sprite/assets/musica/character_selection.mp3" type="AudioStream" id=12]
+[ext_resource path="res://Escena/AudioStreamPlayer.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Sprite/assets/personajes/jefes i player/player2.png" type="Texture" id=14]
+
+[sub_resource type="DynamicFont" id=6]
+size = 40
+font_data = ExtResource( 9 )
+
+[node name="Seleccio_Personatges" type="CanvasLayer"]
+script = ExtResource( 8 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="FondoNegro" type="Sprite" parent="ParallaxBackground"]
+position = Vector2( 504.5, 302 )
+scale = Vector2( 0.768702, 0.768448 )
+texture = ExtResource( 10 )
+
+[node name="LightGlow" type="Sprite" parent="ParallaxBackground"]
+modulate = Color( 1, 1, 1, 0.752941 )
+position = Vector2( 283, 297 )
+scale = Vector2( 0.641221, 0.619593 )
+texture = ExtResource( 11 )
+
+[node name="LightGlow2" type="Sprite" parent="ParallaxBackground"]
+modulate = Color( 1, 1, 1, 0.752941 )
+position = Vector2( 759, 303.75 )
+scale = Vector2( 0.641221, 0.632952 )
+texture = ExtResource( 11 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 180.0
+margin_top = 160.0
+margin_right = 346.0
+margin_bottom = 377.0
+texture = ExtResource( 7 )
+expand = true
+
+[node name="Buttons" type="Control" parent="."]
+margin_left = 67.9998
+margin_top = 8.0
+margin_right = 108.0
+margin_bottom = 48.0
+
+[node name="left" type="TextureButton" parent="Buttons"]
+margin_left = 17.0
+margin_top = 234.0
+margin_right = 101.0
+margin_bottom = 327.0
+texture_normal = ExtResource( 1 )
+expand = true
+
+[node name="rigth" type="TextureButton" parent="Buttons"]
+margin_left = 296.0
+margin_top = 231.0
+margin_right = 385.0
+margin_bottom = 332.0
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Control" type="Control" parent="."]
+margin_left = 61.0
+margin_top = -31.0
+margin_right = 101.0
+margin_bottom = 9.0
+
+[node name="barra" type="TextureButton" parent="Control"]
+margin_left = 342.0
+margin_top = 475.0
+margin_right = 543.0
+margin_bottom = 638.0
+texture_normal = ExtResource( 4 )
+expand = true
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+margin_left = 662.0
+margin_top = 156.0
+margin_right = 834.0
+margin_bottom = 383.0
+texture = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Player2" type="Control" parent="."]
+margin_left = 18.9998
+margin_top = 63.0
+margin_right = 58.9998
+margin_bottom = 103.0
+
+[node name="player2_left" type="TextureButton" parent="Player2"]
+margin_left = 522.0
+margin_top = 185.0
+margin_right = 617.0
+margin_bottom = 273.0
+texture_normal = ExtResource( 1 )
+expand = true
+
+[node name="player2_rigth" type="TextureButton" parent="Player2"]
+margin_left = 919.0
+margin_top = 276.0
+margin_right = 1014.0
+margin_bottom = 364.0
+rect_rotation = 180.0
+texture_normal = ExtResource( 1 )
+expand = true
+
+[node name="Label" type="Label" parent="."]
+margin_left = 163.0
+margin_top = 494.0
+margin_right = 330.0
+margin_bottom = 532.0
+custom_fonts/font = SubResource( 6 )
+text = "PLAYER 1"
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 638.0
+margin_top = 499.0
+margin_right = 810.0
+margin_bottom = 537.0
+custom_fonts/font = SubResource( 6 )
+text = "PLAYER 2"
+
+[node name="Label3" type="Label" parent="."]
+margin_left = 466.0
+margin_top = 517.0
+margin_right = 577.0
+margin_bottom = 555.0
+rect_scale = Vector2( 0.6, 0.6 )
+custom_fonts/font = SubResource( 6 )
+text = "FIGHT"
+
+[node name="AudioStreamPlayer" parent="." instance=ExtResource( 13 )]
+stream = ExtResource( 12 )
+
+[node name="0" type="Sprite" parent="."]
+visible = false
+position = Vector2( 290, 162 )
+texture = ExtResource( 3 )
+
+[node name="1" type="Sprite" parent="."]
+visible = false
+position = Vector2( 290, 162 )
+texture = ExtResource( 7 )
+
+[node name="2" type="Sprite" parent="."]
+visible = false
+position = Vector2( 290, 162 )
+texture = ExtResource( 5 )
+
+[node name="3" type="Sprite" parent="."]
+visible = false
+position = Vector2( 290, 162 )
+texture = ExtResource( 14 )
+
+[connection signal="pressed" from="Buttons/left" to="." method="_on_left_pressed"]
+[connection signal="pressed" from="Buttons/rigth" to="." method="_on_rigth_pressed"]
+[connection signal="pressed" from="Control/barra" to="." method="_on_barra_pressed"]
+[connection signal="pressed" from="Player2/player2_left" to="." method="_on_player2_left_pressed"]
+[connection signal="pressed" from="Player2/player2_rigth" to="." method="_on_player2_rigth_pressed"]
