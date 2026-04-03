@@ -49,7 +49,7 @@ func _ready():
 	
 	
 	
-func _input(event):
+func _unhandled_input(event):
 
 	if event is InputEventMouseButton:
 		if Input.is_action_pressed("left_click"):
