@@ -229,7 +229,7 @@ func request_attack(pawn, hability , direction):
 					yield(get_tree().create_timer(0.3), "timeout")
 					if not is_instance_valid(pawn_target) or pawn_target.m_health <= 0:
 						# Si el objetivo murió, limpiamos la celda
-						set_cellv(world_to_map(cell_target), -1)
+						set_cellv(cell_target, -1)
 					
 					draw_range(pawn.m_move_range, cell_start, EMPTY)
 					draw_range(hability.hability_range, cell_start, EMPTY)
