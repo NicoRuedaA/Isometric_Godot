@@ -66,6 +66,7 @@ func get_pawn_clicked():
 func request_end_turn(turn_ended):
 
 	self.thinking=false
+	area_cell_clicked.global_position = Vector2(-9999, -9999) # Reseteamos el collider para que detecte nuevos clicks
 	if(turn_ended):
 		end_turn()
 		
