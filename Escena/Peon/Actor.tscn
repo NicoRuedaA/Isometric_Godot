@@ -39,6 +39,8 @@ hability_range = 2
 
 [node name="hability3" type="Node2D" parent="habilities"]
 script = ExtResource( 4 )
-hability_name = "Golpe Fuerte"
-hability_damage = 7
-hability_range = 1
+hability_name = "Curacion"
+hability_damage = 0
+hability_range = 2
+is_heal = true
+heal_amount = 4

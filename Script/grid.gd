@@ -219,7 +219,7 @@ func request_attack(pawn, hability , direction):
 			ranges.ATTACK:
 				#obtener pieza enemiga
 				#var pawn_objective = ..
-				if(cell_target_type_pawn!=-1 and cell_start!=cell_target):
+				if(cell_target_type_pawn!=-1): # Quitamos la restricción de no poder hacer click en uno mismo por si queremos curarnos a nosotros mismos
 					pawn.m_attacking=false
 					pawn.m_is_clicked = false
 					yield(get_tree().create_timer(0.35), "timeout")
@@ -229,7 +229,11 @@ func request_attack(pawn, hability , direction):
 					
 					var pawn_target = get_pawn_at_cell(cell_target)
 					if pawn_target:
-						pawn_target.get_damage(pawn.m_actual_attack)
+						if pawn.m_actual_attack.is_heal:
+							pawn_target.get_heal(pawn.m_actual_attack)
+						else:
+							pawn_target.get_damage(pawn.m_actual_attack)
+							
 					yield(get_tree().create_timer(0.3), "timeout")
 					if not is_instance_valid(pawn_target) or pawn_target.m_health <= 0:
 						# Si el objetivo murió, limpiamos la celda

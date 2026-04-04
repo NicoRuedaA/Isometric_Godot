@@ -80,6 +80,25 @@ func get_damage(hab):
 	else:
 		self.damage_blink()
 
+func get_heal(hab):
+	self.m_health += hab.heal_amount
+	if self.m_health > self.m_max_health:
+		self.m_health = self.m_max_health
+	self.heal_blink()
+
+func heal_blink():
+	var original_modulate = $Sprite.modulate
+	$Sprite.modulate = Color(0.2, 1, 0.2, 1) # Verde
+	yield(get_tree().create_timer(0.1), "timeout")
+	if is_instance_valid(self):
+		$Sprite.modulate = Color(1, 1, 1, 1) # Normal
+		yield(get_tree().create_timer(0.1), "timeout")
+	if is_instance_valid(self):
+		$Sprite.modulate = Color(0.2, 1, 0.2, 1) # Verde
+		yield(get_tree().create_timer(0.1), "timeout")
+	if is_instance_valid(self):
+		$Sprite.modulate = original_modulate # Vuelta a la normalidad
+
 func damage_blink():
 	var original_modulate = $Sprite.modulate
 	$Sprite.modulate = Color(1, 0.2, 0.2, 1) # Rojo
