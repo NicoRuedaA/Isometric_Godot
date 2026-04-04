@@ -14,6 +14,7 @@ var thinking setget set_thinking
 var active_player : int = 1
 
 signal thinking_changed(is_thinking)
+signal pawn_selected(pawn)
 
 func set_thinking(value):
 	thinking = value
@@ -48,6 +49,7 @@ func _on_clicked_area_entered(area):
 	pawn_clicked.m_is_clicked == false and 
 	int(pawn_clicked.get_parent().name) == active_player):
 		pawn_clicked.clicked()
+		emit_signal("pawn_selected", pawn_clicked)
 		self.thinking=true
 		
 		

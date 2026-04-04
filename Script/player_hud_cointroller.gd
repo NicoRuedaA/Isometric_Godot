@@ -4,6 +4,8 @@ extends CanvasLayer
 # Declare member variables here. Examples:
 onready var button_attack = $Node2D/Attack
 onready var me = $Node2D
+onready var health_bar = $Node2D/ProgressBar
+onready var player_label = $Node2D/Label
 var show
 
 # Called when the node enters the scene tree for the first time.
@@ -12,7 +14,17 @@ func _ready():
 	var parent = get_parent()
 	if parent.has_signal("thinking_changed"):
 		parent.connect("thinking_changed", self, "_on_thinking_changed")
+	if parent.has_signal("pawn_selected"):
+		parent.connect("pawn_selected", self, "_on_pawn_selected")
 	_update_ui(show)
+	
+func _on_pawn_selected(pawn):
+	if health_bar:
+		health_bar.min_value = 0
+		health_bar.max_value = pawn.m_max_health
+		health_bar.value = pawn.m_health
+	if player_label:
+		player_label.text = pawn.name + " (HP: " + str(pawn.m_health) + "/" + str(pawn.m_max_health) + ")"
 	
 func _on_thinking_changed(is_thinking):
 	show = is_thinking

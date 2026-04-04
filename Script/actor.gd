@@ -9,7 +9,8 @@ var cellSize = Vector2.ZERO
 onready var habilities_tree = $habilities
 
 export var m_move_range = 2
-export var m_health = 1
+export var m_health = 10
+var m_max_health = 10
 
 var m_actual_cell
 var m_cell_player
@@ -36,6 +37,7 @@ export var is_boss : bool = false
 export var team : int = 0
 
 func _ready():
+	m_max_health = m_health
 	if team == 0 and get_parent():
 		team = int(get_parent().name) if get_parent().name in ["1", "2"] else 1
 	if not is_boss and name == "jefe":
