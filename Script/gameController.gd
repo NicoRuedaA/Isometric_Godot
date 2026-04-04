@@ -77,7 +77,15 @@ func end_turn():
 
 func _on_Attack_pressed():
 	if(pawn_clicked != null):
-		pawn_clicked.attack()
+		pawn_clicked.attack(0)
+
+func _on_Habilidad1_pressed():
+	if(pawn_clicked != null):
+		pawn_clicked.attack(1)
+
+func _on_Habilidad2_pressed():
+	if(pawn_clicked != null):
+		pawn_clicked.attack(2)
 #func _on_Button_pressed():
 	#if(pawn_clicked != null):
 		#pawn_clicked.attack()

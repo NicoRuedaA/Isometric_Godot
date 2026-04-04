@@ -54,7 +54,9 @@ func _ready():
 # Función _unhandled_input eliminada para centralizar los inputs en gameController.gd
 		
 		
-func attack():
+func attack(index = 0):
+	if index < habilities_tree.m_habilities.size():
+		m_actual_attack = habilities_tree.m_habilities[index]
 	m_attacking = true
 	Grid.prepare_attack(self, self.m_actual_attack)
 	#guardamos el ataque según el botón que elijamos. Solo tenemos uno

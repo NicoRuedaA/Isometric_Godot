@@ -22,14 +22,6 @@ z_index = 5
 current = true
 script = ExtResource( 2 )
 
-[node name="Label" type="Label" parent="Camera2D"]
-margin_left = 779.0
-margin_top = -452.0
-margin_right = 819.0
-margin_bottom = -438.0
-rect_scale = Vector2( 2, 2 )
-text = "sdasd"
-
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 
 [node name="Tween" type="Tween" parent="Camera2D"]
@@ -103,6 +95,8 @@ text = "ataque"
 [connection signal="area_entered" from="clicked" to="." method="_on_clicked_area_entered"]
 [connection signal="area_exited" from="clicked" to="." method="_on_clicked_area_exited"]
 [connection signal="pressed" from="Opciones_Combate/Node2D/Attack" to="." method="_on_Attack_pressed"]
+[connection signal="pressed" from="Opciones_Combate/Node2D/Habilidad-1" to="." method="_on_Habilidad1_pressed"]
+[connection signal="pressed" from="Opciones_Combate/Node2D/Habilidad-2" to="." method="_on_Habilidad2_pressed"]
 [connection signal="pressed" from="Opciones_Combate/Button" to="." method="_on_Button_pressed"]
 
 [editable path="Opciones_Combate"]

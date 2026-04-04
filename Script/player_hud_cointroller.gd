@@ -3,6 +3,8 @@ extends CanvasLayer
 
 # Declare member variables here. Examples:
 onready var button_attack = $Node2D/Attack
+onready var button_hab1 = $"Node2D/Habilidad-1"
+onready var button_hab2 = $"Node2D/Habilidad-2"
 onready var me = $Node2D
 onready var health_bar = $Node2D/ProgressBar
 onready var player_label = $Node2D/Label
@@ -25,6 +27,26 @@ func _on_pawn_selected(pawn):
 		health_bar.value = pawn.m_health
 	if player_label:
 		player_label.text = pawn.name + " (HP: " + str(pawn.m_health) + "/" + str(pawn.m_max_health) + ")"
+		
+	var habilities = pawn.habilities_tree.m_habilities
+	
+	if habilities.size() > 0:
+		button_attack.text = habilities[0].hability_name
+		button_attack.show()
+	else:
+		button_attack.hide()
+		
+	if habilities.size() > 1:
+		button_hab1.text = habilities[1].hability_name
+		button_hab1.show()
+	else:
+		button_hab1.hide()
+		
+	if habilities.size() > 2:
+		button_hab2.text = habilities[2].hability_name
+		button_hab2.show()
+	else:
+		button_hab2.hide()
 	
 func _on_thinking_changed(is_thinking):
 	show = is_thinking
