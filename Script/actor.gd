@@ -72,9 +72,24 @@ func clicked():
 
 func get_damage(hab):
 	self.m_health -= hab.hability_damage
+	
 	if(self.m_health <= 0):
 		self.kill()
+	else:
+		self.damage_blink()
 
+func damage_blink():
+	var original_modulate = $Sprite.modulate
+	$Sprite.modulate = Color(1, 0.2, 0.2, 1) # Rojo
+	yield(get_tree().create_timer(0.1), "timeout")
+	if is_instance_valid(self):
+		$Sprite.modulate = Color(1, 1, 1, 1) # Normal
+		yield(get_tree().create_timer(0.1), "timeout")
+	if is_instance_valid(self):
+		$Sprite.modulate = Color(1, 0.2, 0.2, 1) # Rojo
+		yield(get_tree().create_timer(0.1), "timeout")
+	if is_instance_valid(self):
+		$Sprite.modulate = original_modulate # Vuelta a la normalidad
 
 func kill():
 	$Sprite.modulate = Color( 1, 1, 1, 0.5 )
