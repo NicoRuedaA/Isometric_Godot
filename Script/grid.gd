@@ -114,6 +114,9 @@ func prepare_movement(pawn):
 	
 func prepare_attack(pawn, hability):
 	draw_range(pawn.m_move_range, world_to_map(pawn.position), EMPTY)
+	# Limpiamos el rango del ataque anterior en caso de cambiar entre habilidades (Bug 2)
+	if pawn.m_actual_attack:
+		draw_range(pawn.m_actual_attack.hability_range, world_to_map(pawn.position), EMPTY)
 	draw_range(hability.hability_range, world_to_map(pawn.position), ATTACK)
 	pawn.m_is_clicked=true
 
@@ -203,14 +206,15 @@ func request_attack(pawn, hability , direction):
 			#si la casilla seleccionada no tiene color
 			ranges.EMPTY:
 				draw_range(hability.hability_range, cell_start, EMPTY)
-				#draw_range(pawn.m_move_range, cell_start, MOVEMENT)
-				yield(get_tree().create_timer(0.5), "timeout")
+				
 				if not is_instance_valid(pawn):
 					return
-				pawn.m_attacking=false
-				yield(get_tree().create_timer(0.1), "timeout")
+				pawn.m_attacking = false
+				pawn.m_is_clicked = false
+				
+				# Quitar el yield artificial y pasar turno/cancelar inmediatamente (Bug 3)
 				game_manager.request_end_turn(false)
-				#pawn.m_attacking = false
+				set_cellv(cell_start, pawn.m_cell_player)
 			#si la casilla seleccionada es de atacar
 			ranges.ATTACK:
 				#obtener pieza enemiga
@@ -239,15 +243,17 @@ func request_attack(pawn, hability , direction):
 					if not is_instance_valid(pawn):
 						return
 					game_manager.set_cell_clicked(worldToMap(cell_target))
-				pawn.m_attacking=false
-		
-					#pawn.m_is_clicked = false
-					#yield(get_tree().create_timer(0.1), "timeout")
-					#game_manager.request_end_turn(false)
-					#draw_range(pawn.m_move_range, cell_start, EMPTY)
+				else:
+					# Si atacas a una casilla roja sin enemigo (Softlock - Bug 1)
+					pawn.m_attacking=false
+					pawn.m_is_clicked = false
+					draw_range(pawn.m_move_range, cell_start, EMPTY)
+					draw_range(hability.hability_range, cell_start, EMPTY)
+					set_cellv(cell_start, pawn.m_cell_player)
 					
-				#yield(get_tree().create_timer(0.1), "timeout")
-				#game_manager.request_end_turn(true)
+					if not is_instance_valid(pawn):
+						return
+					game_manager.request_end_turn(false)
 		
 		
 
