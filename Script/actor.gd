@@ -72,7 +72,7 @@ func clicked():
 
 func get_damage(hab):
 	self.m_health -= hab.hability_damage
-	if(self.m_health < 0):
+	if(self.m_health <= 0):
 		self.kill()
 
 
