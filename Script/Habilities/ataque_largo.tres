@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Script/Habilities/hability.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+hability_name = "Ataque Largo"
+hability_damage = 2
+hability_range = 2
+hability_cd = 2
+is_heal = false
+heal_amount = 0

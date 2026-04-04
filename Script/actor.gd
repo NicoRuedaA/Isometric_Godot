@@ -6,7 +6,12 @@ var Grid
 var gameManager
 
 var cellSize = Vector2.ZERO
-onready var habilities_tree = $habilities
+
+export(Array, Resource) var m_habilities = [
+	preload("res://Script/Habilities/ataque_basico.tres"),
+	preload("res://Script/Habilities/ataque_largo.tres"),
+	preload("res://Script/Habilities/curacion.tres")
+]
 
 export var m_move_range = 2
 export var m_health = 10
@@ -46,7 +51,8 @@ func _ready():
 	m_is_clicked = false
 	m_attacking = false
 	
-	m_actual_attack=habilities_tree.m_habilities[0]
+	if m_habilities.size() > 0:
+		m_actual_attack = m_habilities[0]
 	
 	
 	
@@ -55,8 +61,8 @@ func _ready():
 		
 		
 func attack(index = 0):
-	if index < habilities_tree.m_habilities.size():
-		m_actual_attack = habilities_tree.m_habilities[index]
+	if index < m_habilities.size():
+		m_actual_attack = m_habilities[index]
 	m_attacking = true
 	Grid.prepare_attack(self, self.m_actual_attack)
 	#guardamos el ataque según el botón que elijamos. Solo tenemos uno

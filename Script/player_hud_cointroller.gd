@@ -28,7 +28,7 @@ func _on_pawn_selected(pawn):
 	if player_label:
 		player_label.text = pawn.name + " (HP: " + str(pawn.m_health) + "/" + str(pawn.m_max_health) + ")"
 		
-	var habilities = pawn.habilities_tree.m_habilities
+	var habilities = pawn.m_habilities
 	
 	if habilities.size() > 0:
 		button_attack.text = habilities[0].hability_name
