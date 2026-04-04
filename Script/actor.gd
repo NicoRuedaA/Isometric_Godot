@@ -91,7 +91,7 @@ func flip_sprite(orien):
 func set_to_cell(x, y):
 	self.position = Grid.mapToWorld(Vector2(x , y))
 	m_actual_cell = Grid.worldToMap(self.position)
-	Grid.print_cell(m_actual_cell, -1) # Ya no pintamos el tile del jugador en el mapa
+	Grid.print_cell(m_actual_cell, m_cell_player)
 
 func move_along_path(path: PoolVector2Array):
 	var tween = Tween.new()
@@ -106,6 +106,9 @@ func move_along_path(path: PoolVector2Array):
 		tween.interpolate_property(self, "position", position, next_pos, 0.15, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		tween.start()
 		yield(tween, "tween_completed")
+		
+		Grid.print_cell(m_actual_cell, -1)
+		Grid.print_cell(next_cell, m_cell_player)
 		
 		position = next_pos
 		m_actual_cell = next_cell
