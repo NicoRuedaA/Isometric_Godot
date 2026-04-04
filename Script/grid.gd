@@ -146,7 +146,6 @@ func request_move(pawn, direction):
 			#si la casilla seleccionada no tiene color
 			ranges.EMPTY:
 				pawn.m_is_clicked = false
-				set_cellv(cell_start, pawn.m_cell_player)
 				game_manager.request_end_turn(false)
 				draw_range(pawn.m_move_range, cell_start, EMPTY)
 			#si la casilla seleccionada es amarilla
@@ -173,13 +172,11 @@ func request_move(pawn, direction):
 					else:
 						# Si no hay ruta (está bloqueado completamente)
 						pawn.m_is_clicked = false
-						set_cellv(cell_start, pawn.m_cell_player)
 						game_manager.request_end_turn(false)
 						draw_range(pawn.m_move_range, cell_start, EMPTY)
 				elif(cell_start!=cell_target):
 					game_manager.set_cell_clicked(worldToMap(cell_target))
 					pawn.m_is_clicked = false
-					set_cellv(cell_start, pawn.m_cell_player)
 					yield(get_tree().create_timer(0.1), "timeout")
 					if not is_instance_valid(pawn):
 						return
