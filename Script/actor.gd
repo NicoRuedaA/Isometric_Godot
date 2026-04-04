@@ -106,6 +106,10 @@ func move_along_path(path: PoolVector2Array):
 		tween.interpolate_property(self, "position", position, next_pos, 0.15, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		tween.start()
 		yield(tween, "tween_completed")
+		
+		Grid.print_cell(m_actual_cell, -1)
+		Grid.print_cell(next_cell, m_cell_player)
+		
 		position = next_pos
 		m_actual_cell = next_cell
 		

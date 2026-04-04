@@ -162,8 +162,6 @@ func request_move(pawn, direction):
 					var path = astar.get_point_path(start_id, target_id)
 					
 					if path.size() > 0:
-						set_cellv(cell_start, -1)
-						set_cellv(cell_target, pawn.m_cell_player)
 						pawn.m_is_clicked = false
 						draw_range(pawn.m_move_range, cell_start, EMPTY)
 						
