@@ -92,4 +92,23 @@ func set_to_cell(x, y):
 	self.position = Grid.mapToWorld(Vector2(x , y))
 	m_actual_cell = Grid.worldToMap(self.position)
 	Grid.print_cell(m_actual_cell, m_cell_player)
+
+func move_along_path(path: PoolVector2Array):
+	var tween = Tween.new()
+	add_child(tween)
 	
+	for i in range(1, path.size()):
+		var next_cell = path[i]
+		var next_pos = Grid.mapToWorld(next_cell)
+		
+		# Animación y flip sprite
+		flip_sprite(m_actual_cell.x - next_cell.x > 0)
+		tween.interpolate_property(self, "position", position, next_pos, 0.15, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		tween.start()
+		yield(tween, "tween_completed")
+		position = next_pos
+		m_actual_cell = next_cell
+		
+	tween.queue_free()
+	yield(get_tree().create_timer(0.01), "timeout")
+

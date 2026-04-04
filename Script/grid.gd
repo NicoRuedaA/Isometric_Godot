@@ -19,6 +19,44 @@ var player2
 
 var mouse_position
 
+var astar = AStar2D.new()
+
+func get_astar_id(cell: Vector2) -> int:
+	return int(cell.x + 1000) * 10000 + int(cell.y + 1000)
+
+func build_astar():
+	var cells = tablero.get_used_cells()
+	for cell in cells:
+		var type = tablero.get_cellv(cell)
+		if type == MOVEMENT or type == ATTACK:
+			astar.add_point(get_astar_id(cell), cell)
+			
+	for cell in cells:
+		var id = get_astar_id(cell)
+		if not astar.has_point(id): continue
+		
+		var neighbors = [Vector2(1, 0), Vector2(-1, 0), Vector2(0, 1), Vector2(0, -1)]
+		for n in neighbors:
+			var nid = get_astar_id(cell + n)
+			if astar.has_point(nid):
+				astar.connect_points(id, nid, false)
+
+func update_obstacles():
+	for id in astar.get_points():
+		astar.set_point_disabled(id, false)
+		
+	if player1:
+		for i in player1.get_children():
+			if is_instance_valid(i):
+				var id = get_astar_id(i.m_actual_cell)
+				if astar.has_point(id): astar.set_point_disabled(id, true)
+				
+	if player2:
+		for i in player2.get_children():
+			if is_instance_valid(i):
+				var id = get_astar_id(i.m_actual_cell)
+				if astar.has_point(id): astar.set_point_disabled(id, true)
+
 func _ready():
 
 	var player1_set = set_player1.instance()
@@ -53,6 +91,8 @@ func _ready():
 		i.setup(self, game_manager)
 		i.set_to_cell(xCell, yCell)
 		i.connect("on_death", game_manager, "_on_actor_death")
+
+	build_astar()
 
 
 func worldToMap(vec):
@@ -112,17 +152,32 @@ func request_move(pawn, direction):
 			#si la casilla seleccionada es amarilla
 			ranges.MOVEMENT:
 				if(cell_target_type_pawn==-1 and cell_start!=cell_target):
-					pawn.position = c
-					pawn.m_actual_cell = b
-					pawn.flip_sprite(cell_start.x - cell_target.x > 0)
-					set_cellv(cell_start, -1)
-					set_cellv(cell_target, pawn.m_cell_player)
-					pawn.m_is_clicked = false
-					yield(get_tree().create_timer(0.1), "timeout")
-					if not is_instance_valid(pawn):
-						return
-					game_manager.request_end_turn(true)
-					draw_range(pawn.m_move_range, cell_start, EMPTY)
+					update_obstacles()
+					var start_id = get_astar_id(cell_start)
+					var target_id = get_astar_id(cell_target)
+					
+					if astar.has_point(start_id): astar.set_point_disabled(start_id, false)
+					if astar.has_point(target_id): astar.set_point_disabled(target_id, false)
+					
+					var path = astar.get_point_path(start_id, target_id)
+					
+					if path.size() > 0:
+						set_cellv(cell_start, -1)
+						set_cellv(cell_target, pawn.m_cell_player)
+						pawn.m_is_clicked = false
+						draw_range(pawn.m_move_range, cell_start, EMPTY)
+						
+						yield(pawn.move_along_path(path), "completed")
+						
+						if not is_instance_valid(pawn):
+							return
+						game_manager.request_end_turn(true)
+					else:
+						# Si no hay ruta (está bloqueado completamente)
+						pawn.m_is_clicked = false
+						set_cellv(cell_start, pawn.m_cell_player)
+						game_manager.request_end_turn(false)
+						draw_range(pawn.m_move_range, cell_start, EMPTY)
 				elif(cell_start!=cell_target):
 					game_manager.set_cell_clicked(worldToMap(cell_target))
 					pawn.m_is_clicked = false
