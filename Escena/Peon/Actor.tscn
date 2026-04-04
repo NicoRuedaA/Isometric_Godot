@@ -2,8 +2,6 @@
 
 [ext_resource path="res://Script/actor.gd" type="Script" id=1]
 [ext_resource path="res://Sprite/assets/personajes/crawler.png" type="Texture" id=2]
-[ext_resource path="res://Script/Habilities/habilities.gd" type="Script" id=3]
-[ext_resource path="res://Script/Habilities/hability.gd" type="Script" id=4]
 
 [sub_resource type="CircleShape2D" id=5]
 radius = 20.025
