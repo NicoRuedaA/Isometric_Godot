@@ -45,10 +45,10 @@ draw_center = false
 draw_center = false
 
 [sub_resource type="StyleBoxFlat" id=15]
-bg_color = Color( 1, 0.0941176, 0.0941176, 1 )
+bg_color = Color( 0.376471, 0.882353, 0.14902, 1 )
 
 [sub_resource type="StyleBoxFlat" id=16]
-bg_color = Color( 0.32549, 0.941176, 0.192157, 1 )
+bg_color = Color( 1, 0, 0, 1 )
 
 [sub_resource type="DynamicFont" id=13]
 size = 60
