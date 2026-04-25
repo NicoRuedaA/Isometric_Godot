@@ -26,3 +26,8 @@ Thumbs.db
 
 # Temporary files
 *.tmp
+
+*.psd
+*.rar
+*.zip
+*.7z

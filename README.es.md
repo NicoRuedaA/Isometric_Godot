@@ -1,39 +1,46 @@
-# Proyecto Isométrico Godot
+# Proyecto Isométrico 2D
 
-![preview](https://github.com/NicoRuedaA/Isometric_Godot/blob/main/preview.gif?raw=true)
+[![Godot](https://img.shields.io/badge/Godot-3.x-blue?logo=godot-engine)](https://godotengine.org/)
+[![GDScript](https://img.shields.io/badge/Language-GDScript-478CBF)](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/)
+[![Estado](https://img.shields.io/badge/Estado-Prototipo-orange)]()
+
+![preview](docs/preview.gif)
 
 Este es un proyecto 2D isométrico desarrollado en **Godot Engine 3.x**.
 
-## Características principales
+---
 
-- **Motor:** Godot Engine 3 (GDScript).
-- **Estilo Visual:** Isométrico 2D.
-- **Escena Principal:** `HUD_PRINCIPAL.tscn` (Ubicada en `Escena/Olaia/`).
-- **Sistemas incluidos:**
-  - Sistema de guardado (`save.gd`).
-  - Ajustes globales configurables.
-  - Habilidades (`Hability` base en GDScript).
+## Características
 
-## Controles configurados
+- **Grid isométrico** — Cámara y tilemap 2D isométrico
+- **Movimiento por grid** — Movimiento del jugador tile a tile en el plano isométrico
+- **Sistema de guardado** — Estado persistente del juego vía `save.gd`
+- **Sistema de habilidades** — Clase base `Hability` extensible en GDScript
+- **Control de zoom** — Zoom con la rueda del ratón
+- **Fuentes y sprites personalizados** — Recursos visuales seleccionados
 
-El proyecto cuenta con las siguientes acciones mapeadas:
+---
 
-- **Seleccionar:** Click Izquierdo
-- **Zoom:** Rueda del ratón (`zoom_in`, `zoom_out`)
-- **Pausa:** `Escape`
-- **Interacciones de ratón:** Click Izquierdo y Click Derecho
+## Estructura del Proyecto
+├── Escena/          # Escenas del juego (HUD, niveles)
+├── Script/          # Lógica en GDScript — movimiento, habilidades, guardado
+├── Sprite/          # Spritesheets y recursos gráficos
+├── fuentes/         # Fuentes personalizadas
+├── DEMOS/           # Escenas de prototipado y referencia
+├── PDF/             # Documentación de diseño
+├── Explicacion/     # Notas y explicaciones adicionales
+└── project.godot   # Punto de entrada del proyecto Godot
 
-## Estructura de Directorios
+---
 
-- `/Escena`: Contiene todas las escenas del juego (HUD, Niveles, etc).
-- `/Script`: Lógica del juego en GDScript (incluyendo habilidades y comportamientos).
-- `/Sprite`: Recursos gráficos y spritesheets.
-- `/fuentes`: Fuentes personalizadas utilizadas en el juego.
-- `/DEMOS`: Escenas o scripts de demostración o prototipado.
-- `/PDF` y `/Explicacion`: Documentación adicional y documentos de diseño del proyecto.
+## Controles
 
-## Cómo ejecutarlo
+| Input | Acción |
+|---|---|
+| Click Izquierdo | Seleccionar |
+| Rueda del ratón | Zoom in / out |
+| Escape | Pausar |
 
-1. Abre **Godot Engine 3**.
-2. Importa el archivo `project.godot`.
-3. Haz clic en "Ejecutar" o presiona `F5` para lanzar la escena principal (`HUD_PRINCIPAL.tscn`).
+---
+
+Desarrollado por [Nico Rueda](https://github.com/NicoRuedaA)

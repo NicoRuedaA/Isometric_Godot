@@ -1,39 +1,46 @@
-# Isometric Godot Project
+# Isometric 2D Game
 
-![preview](https://github.com/NicoRuedaA/Isometric_Godot/blob/main/preview.gif?raw=true)
+[![Godot](https://img.shields.io/badge/Godot-3.x-blue?logo=godot-engine)](https://godotengine.org/)
+[![GDScript](https://img.shields.io/badge/Language-GDScript-478CBF)](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/)
+[![Status](https://img.shields.io/badge/Status-Prototype-orange)]()
+
+![preview](docs/preview.gif)
 
 This is a 2D isometric project developed in **Godot Engine 3.x**.
 
-## Main Features
+---
 
-- **Engine:** Godot Engine 3 (GDScript).
-- **Visual Style:** 2D Isometric.
-- **Main Scene:** `HUD_PRINCIPAL.tscn` (Located in `Escena/Olaia/`).
-- **Included Systems:**
-  - Save system (`save.gd`).
-  - Configurable global settings.
-  - Abilities (`Hability` base in GDScript).
+## Features
 
-## Input Mappings
+- **Isometric grid** — 2D isometric camera and tilemap setup
+- **Grid-based movement** — tile-by-tile player movement on the isometric plane
+- **Save system** — persistent game state via `save.gd`
+- **Ability framework** — extensible `Hability` base class in GDScript
+- **Zoom controls** — mouse wheel zoom in/out
+- **Custom fonts and sprites** — hand-picked visual assets
 
-The project includes the following mapped actions:
+---
 
-- **Select:** Left Click
-- **Zoom:** Mouse Wheel (`zoom_in`, `zoom_out`)
-- **Pause:** `Escape`
-- **Mouse Interactions:** Left Click and Right Click
+## Project Structure
+├── Escena/          # Game scenes (HUD, levels)
+├── Script/          # GDScript logic — movement, abilities, save system
+├── Sprite/          # Spritesheets and graphic assets
+├── fuentes/         # Custom fonts
+├── DEMOS/           # Prototype and reference scenes
+├── PDF/             # Design documentation
+├── Explicacion/     # Additional notes and explanations
+└── project.godot    # Godot project entry point
 
-## Directory Structure
+---
 
-- `/Escena`: Contains all game scenes (HUD, Levels, etc).
-- `/Script`: Game logic in GDScript (including abilities and behaviors).
-- `/Sprite`: Graphic resources and spritesheets.
-- `/fuentes`: Custom fonts used in the game.
-- `/DEMOS`: Demo or prototyping scenes and scripts.
-- `/PDF` and `/Explicacion`: Additional documentation and design documents.
+## Controls
 
-## How to Run
+| Input | Action |
+|---|---|
+| Left Click | Select |
+| Mouse Wheel | Zoom in / out |
+| Escape | Pause |
 
-1. Open **Godot Engine 3**.
-2. Import the `project.godot` file.
-3. Click "Run" or press `F5` to launch the main scene (`HUD_PRINCIPAL.tscn`).
+---
+
+Developed by [Nico Rueda](https://github.com/NicoRuedaA)
